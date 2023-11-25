@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Boys/Source/Repos/NEA/Content/errorText.spritefont","C:/Users/Boys/Source/Repos/NEA/Content/bin/DesktopGL/Content/errorText.xnb","FontDescriptionProcessor","SpriteFontContent",2065,136223,1.4811606
+"C:/Users/Boys/Source/Repos/NEA/Content/red circle.png","C:/Users/Boys/Source/Repos/NEA/Content/bin/DesktopGL/Content/red circle.xnb","TextureProcessor","Texture2DContent",161,485,1.2205842
