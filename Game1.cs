@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Xml;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,9 +13,12 @@ namespace NEA
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D playerCharacter;
+        private Texture2D grassTile;
         private Vector2 playerPosition;
+        private Vector2 tilePlacePointer;
         private float playerSpeed;
-        private string[,] mapArray = new string[100,100];
+        private const int mapSize = 100;
+        private int[,] mapArray = new int[mapSize,mapSize];
         private SpriteFont errorText;
         public Game1()
         {
@@ -31,14 +35,15 @@ namespace NEA
             playerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
             playerSpeed = 100f;
             // ^^ placing the player in the centre of the screen and setting their speed
+            GenerateMap();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            errorText = Content.Load<SpriteFont>("errorText");
-            
-            playerCharacter = Content.Load<Texture2D>("red circle");
+            errorText = Content.Load<SpriteFont>("errorText");   
+            playerCharacter = Content.Load<Texture2D>("player character");
+            grassTile = Content.Load<Texture2D>("grass tile");
             // TODO: use this.Content to load your game content here
             //map reading
         }
@@ -53,9 +58,6 @@ namespace NEA
 
             }
 
-
-
-
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -63,15 +65,35 @@ namespace NEA
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
             _spriteBatch.Draw(playerCharacter, playerPosition, null, Color.White, 0f, new Vector2(playerCharacter.Width / 2, playerCharacter.Height / 2), Vector2.One, SpriteEffects.None, 0f); 
             _spriteBatch.End();
             base.Draw(gameTime);
-            
-        
+        }
+        public void GenerateMap()
+        {
+            tilePlacePointer = new Vector2(0, 0);
+            int i = 0;
+            int j = 0;
+            _spriteBatch.Begin();
+            while (this.mapArray[i,j] != 0)
+            {
+                while (this.mapArray[i,j] != 1)
+                {
+                    switch (this.mapArray[i, j])
+                    {
+                        case 2:
+                            _spriteBatch.Draw(grassTile,new Vector2 (i*100, j*100), Color.Green);
+                            break;
+                        case 3:
+                            break;
+                    }
+                    
+                
+                }
+            }
+            _spriteBatch.End();
         }
         public void DisplayMessage(SpriteFont messageType, string message)
         {
@@ -82,10 +104,10 @@ namespace NEA
        
         public void GenerateMapArray(string mapName)
         {
-            //makes mapreader scan a doc to get number of lines, then run a for loop for the number of lines to add to maparray[]
+           //pulls the map out of the file line by line and converts it into an int array to be stored in memory
             try
             {
-                using (StreamReader mapReader = new StreamReader(mapName))
+                using (StreamReader mapReader = new StreamReader(mapName))  
                 {
                     string line;
                     int i = 0;
@@ -97,9 +119,17 @@ namespace NEA
                     {
                         line = mapReader.ReadLine();
                         string[] processedLine = line.Split();
+                        int[] intProcessedLine = new int[mapSize];
+                        int l = 0;
+                        foreach (string temp in processedLine)
+                        {
+                            intProcessedLine[l] = Convert.ToInt16(temp);
+                            l++;
+                        }
+                        
                         for (int j = 0; j >= processedLine.Length; j++)
                         {
-                            mapArray[n, j] = processedLine[j];
+                            mapArray[n, j] = intProcessedLine[j];
                         }
                     }
                 }
