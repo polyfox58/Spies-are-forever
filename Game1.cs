@@ -35,6 +35,7 @@ namespace NEA
             playerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
             playerSpeed = 100f;
             // ^^ placing the player in the centre of the screen and setting their speed
+            GenerateMapArray("test map.txt");
             GenerateMap();
         }
 
@@ -107,7 +108,7 @@ namespace NEA
            //pulls the map out of the file line by line and converts it into an int array to be stored in memory
             try
             {
-                using (StreamReader mapReader = new StreamReader(mapName))  
+                using (StreamReader mapReader = new StreamReader(Path.GetDirectoryName(mapName)))  
                 {
                     string line;
                     int i = 0;
@@ -136,9 +137,9 @@ namespace NEA
             }
             catch
             {
-                DisplayMessage(errorText, "could not read map.txt");
+                DisplayMessage(errorText, "could not read " + mapName);
             }
-            
+            //test
         }
 
     }

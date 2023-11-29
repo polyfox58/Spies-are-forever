@@ -4,10 +4,14 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Boys/Source/Repos/NEA/Content/errorText.spritefont</File>
-    <File>C:/Users/Boys/Source/Repos/NEA/Content/red circle.png</File>
+    <File>C:/Users/Boys/Source/Repos/spies-are-forever/Content/errorText.spritefont</File>
+    <File>C:/Users/Boys/Source/Repos/spies-are-forever/Content/grass tile.png</File>
+    <File>C:/Users/Boys/Source/Repos/spies-are-forever/Content/player character.png</File>
+    <File>C:/Users/Boys/Source/Repos/spies-are-forever/Content/red circle.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

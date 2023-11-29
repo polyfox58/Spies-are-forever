@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Boys/Source/Repos/spies-are-forever/Content/red circle.png</SourceFile>
+  <SourceFile>C:/Users/Boys/Source/Repos/spies-are-forever/Content/player character.png</SourceFile>
   <SourceTime>2023-11-29T11:01:36.8653662+00:00</SourceTime>
-  <DestFile>C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/red circle.xnb</DestFile>
-  <DestTime>2023-11-29T11:08:17.7462413+00:00</DestTime>
+  <DestFile>C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/player character.xnb</DestFile>
+  <DestTime>2023-11-29T11:08:17.4962205+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T12:44:56+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
