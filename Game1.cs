@@ -32,6 +32,7 @@ namespace NEA
         {
             // TODO: Add your initialization logic here
             base.Initialize();
+            
             playerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
             playerSpeed = 100f;
             // ^^ placing the player in the centre of the screen and setting their speed
@@ -96,18 +97,19 @@ namespace NEA
             _spriteBatch.Begin();
             while (this.mapArray[i,j] != 1)
             {
-                while (this.mapArray[i,j] != 0)
+                while (this.mapArray[i,j+1] != 0)
                 {
                     switch (this.mapArray[i, j])
                     {
                         case 2:
-                            _spriteBatch.Draw(grassTile,new Vector2 (i*100, j*100), Color.Green);
+                            _spriteBatch.Draw(grassTile,new Vector2 (j*100, i*100), Color.Green);
                             break;
                         case 3:
                             break;
                     }
                     j++;
                 }
+                j = 0;
                 i++;
             }
             _spriteBatch.End();
