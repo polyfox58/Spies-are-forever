@@ -15,7 +15,6 @@ namespace NEA
         private Texture2D playerCharacter;
         private Texture2D grassTile;
         private Vector2 playerPosition;
-        private Vector2 tilePlacePointer;
         private float playerSpeed;
         private const int mapSize = 100;
         private int[,] mapArray = new int[mapSize,mapSize];
@@ -37,7 +36,6 @@ namespace NEA
             playerSpeed = 100f;
             // ^^ placing the player in the centre of the screen and setting their speed
             GenerateMapArray("test map.txt");
-            GenerateMap();
         }
 
         protected override void LoadContent()
@@ -47,7 +45,7 @@ namespace NEA
             playerCharacter = Content.Load<Texture2D>("player character");
             grassTile = Content.Load<Texture2D>("grass tile");
             // TODO: use this.Content to load your game content here
-            //map reading
+           
         
         }
 
@@ -55,7 +53,7 @@ namespace NEA
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            //GenerateMap();
+            //movement controls
             var keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Up))
             {
@@ -73,7 +71,7 @@ namespace NEA
             {
                 playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            
+            var mouseState = Mouse.GetState(); //gets coords and clicks
             // TODO: Add your update logic here
             
             base.Update(gameTime);
@@ -89,9 +87,10 @@ namespace NEA
             
             base.Draw(gameTime);
         }
+        //unloads the map from the array and sorts through it, drawing the tiles specified. Maps should always be closed by a "1" on a new line after the final line
         public void GenerateMap()
         {
-            tilePlacePointer = new Vector2(0, 0);
+            
             int i = 0;
             int j = 0;
             _spriteBatch.Begin();
@@ -102,7 +101,7 @@ namespace NEA
                     switch (this.mapArray[i, j])
                     {
                         case 2:
-                            _spriteBatch.Draw(grassTile,new Vector2 (j*100, i*100), Color.Green);
+                            _spriteBatch.Draw(grassTile,new Vector2 (j*50, i*50), Color.Green);
                             break;
                         case 3:
                             break;
@@ -114,6 +113,7 @@ namespace NEA
             }
             _spriteBatch.End();
         }
+        //writes messages to the screen using the font "messageType"
         public void DisplayMessage(SpriteFont messageType, string message)
         {
             _spriteBatch.Begin();
@@ -121,9 +121,9 @@ namespace NEA
             _spriteBatch.End();
         }
        
+        //pulls the map out of the file line by line and converts it into an int array to be stored in memory
         public void GenerateMapArray(string mapName)
         {
-           //pulls the map out of the file line by line and converts it into an int array to be stored in memory
             try
             {
                     string line;
