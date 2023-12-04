@@ -47,29 +47,45 @@ namespace NEA
             grassTile = Content.Load<Texture2D>("grass tile");
             // TODO: use this.Content to load your game content here
             //map reading
+        
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            //GenerateMap();
             var keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Up))
             {
-
+                playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-
+            if (keyState.IsKeyDown(Keys.Down))
+            {
+                playerPosition.Y += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            if (keyState.IsKeyDown(Keys.Left))
+            {
+                playerPosition.X -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            if (keyState.IsKeyDown(Keys.Right))
+            {
+                playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            
             // TODO: Add your update logic here
-
+            
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             // TODO: Add your drawing code here
+            GenerateMap();
             _spriteBatch.Begin();
             _spriteBatch.Draw(playerCharacter, playerPosition, null, Color.White, 0f, new Vector2(playerCharacter.Width / 2, playerCharacter.Height / 2), Vector2.One, SpriteEffects.None, 0f); 
             _spriteBatch.End();
+            
             base.Draw(gameTime);
         }
         public void GenerateMap()
@@ -78,9 +94,9 @@ namespace NEA
             int i = 0;
             int j = 0;
             _spriteBatch.Begin();
-            while (this.mapArray[i,j] != 0)
+            while (this.mapArray[i,j] != 1)
             {
-                while (this.mapArray[i,j] != 1)
+                while (this.mapArray[i,j] != 0)
                 {
                     switch (this.mapArray[i, j])
                     {
@@ -90,9 +106,9 @@ namespace NEA
                         case 3:
                             break;
                     }
-                    
-                
+                    j++;
                 }
+                i++;
             }
             _spriteBatch.End();
         }
@@ -108,18 +124,22 @@ namespace NEA
            //pulls the map out of the file line by line and converts it into an int array to be stored in memory
             try
             {
-                using (StreamReader mapReader = new StreamReader(Path.GetDirectoryName(mapName)))  
-                {
                     string line;
                     int i = 0;
+                using (StreamReader mapReader = new StreamReader(mapName))
+                {
                     while ((line = mapReader.ReadLine()) != null)
                     {
                         i++;
                     }
-                    for (int n = 0; i == n; n++)
+                }
+                
+                using (StreamReader mapReader = new StreamReader(mapName))
+                {
+                    for (int n = 0; i > n; n++)
                     {
                         line = mapReader.ReadLine();
-                        string[] processedLine = line.Split();
+                        string[] processedLine = line.Split(",");
                         int[] intProcessedLine = new int[mapSize];
                         int l = 0;
                         foreach (string temp in processedLine)
@@ -127,8 +147,8 @@ namespace NEA
                             intProcessedLine[l] = Convert.ToInt16(temp);
                             l++;
                         }
-                        
-                        for (int j = 0; j >= processedLine.Length; j++)
+
+                        for (int j = 0; j <= processedLine.Length; j++)
                         {
                             mapArray[n, j] = intProcessedLine[j];
                         }

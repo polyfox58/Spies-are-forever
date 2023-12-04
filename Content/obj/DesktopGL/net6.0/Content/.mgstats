@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Boys/Source/Repos/spies-are-forever/Content/errorText.spritefont","C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/errorText.xnb","FontDescriptionProcessor","SpriteFontContent",2065,136223,1.1309566
-"C:/Users/Boys/Source/Repos/spies-are-forever/Content/grass tile.png","C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/grass tile.xnb","TextureProcessor","Texture2DContent",150,40085,0.1115584
-"C:/Users/Boys/Source/Repos/spies-are-forever/Content/player character.png","C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/player character.xnb","TextureProcessor","Texture2DContent",1727,40085,0.049405
-"C:/Users/Boys/Source/Repos/spies-are-forever/Content/red circle.png","C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/red circle.xnb","TextureProcessor","Texture2DContent",161,485,0.257591
+"C:/Users/Boys/Source/Repos/spies-are-forever/Content/errorText.spritefont","C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/errorText.xnb","FontDescriptionProcessor","SpriteFontContent",2065,136223,0.7857342
+"C:/Users/Boys/Source/Repos/spies-are-forever/Content/grass tile.png","C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/grass tile.xnb","TextureProcessor","Texture2DContent",150,40085,0.0809435
+"C:/Users/Boys/Source/Repos/spies-are-forever/Content/player character.png","C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/player character.xnb","TextureProcessor","Texture2DContent",1727,40085,0.0113166
+"C:/Users/Boys/Source/Repos/spies-are-forever/Content/red circle.png","C:/Users/Boys/Source/Repos/spies-are-forever/Content/bin/DesktopGL/Content/red circle.xnb","TextureProcessor","Texture2DContent",161,485,0.0173611
