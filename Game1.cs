@@ -14,11 +14,13 @@ namespace NEA
         private SpriteBatch _spriteBatch;
         private Texture2D playerCharacter;
         private Texture2D grassTile;
+        private Texture2D stoneBrickTile;
         private Vector2 playerPosition;
         private float playerSpeed;
         private const int mapSize = 100;
         private int[,] mapArray = new int[mapSize,mapSize];
         private SpriteFont errorText;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -44,9 +46,8 @@ namespace NEA
             errorText = Content.Load<SpriteFont>("errorText");   
             playerCharacter = Content.Load<Texture2D>("player character");
             grassTile = Content.Load<Texture2D>("grass tile");
+            stoneBrickTile = Content.Load<Texture2D>("stone brick tile");
             // TODO: use this.Content to load your game content here
-           
-        
         }
 
         protected override void Update(GameTime gameTime)
@@ -104,7 +105,11 @@ namespace NEA
                             _spriteBatch.Draw(grassTile,new Vector2 (j*50, i*50), Color.Green);
                             break;
                         case 3:
+                            _spriteBatch.Draw(stoneBrickTile, new Vector2(j * 50, i * 50), Color.Gold);
                             break;
+                        case 99:
+                            break;
+                    
                     }
                     j++;
                 }
