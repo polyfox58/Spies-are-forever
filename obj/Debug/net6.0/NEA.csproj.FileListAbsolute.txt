@@ -25,9 +25,6 @@ C:\Users\Boys\Source\Repos\NEA\obj\Debug\net6.0\NEA.genruntimeconfig.cache
 C:\Users\Boys\Source\Repos\NEA\obj\Debug\net6.0\ref\NEA.dll
 C:\Users\Boys\Source\Repos\NEA\bin\Debug\net6.0\Content\red circle.xnb
 C:\Users\Boys\Source\Repos\NEA\bin\Debug\net6.0\Content\errorText.xnb
-C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\errorText.xnb
-C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\grass tile.xnb
-C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\player character.xnb
 C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\red circle.xnb
 C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\NEA.exe
 C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\NEA.deps.json
@@ -54,4 +51,12 @@ C:\Users\Boys\Source\Repos\spies-are-forever\obj\Debug\net6.0\refint\NEA.dll
 C:\Users\Boys\Source\Repos\spies-are-forever\obj\Debug\net6.0\NEA.pdb
 C:\Users\Boys\Source\Repos\spies-are-forever\obj\Debug\net6.0\NEA.genruntimeconfig.cache
 C:\Users\Boys\Source\Repos\spies-are-forever\obj\Debug\net6.0\ref\NEA.dll
-C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\stone brick tile.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Characters\player character.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Fonts\errorText.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Fonts\File.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Misc assets\crosshair.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\brick wall tile.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\grass tile.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\shallow water tile.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\stone brick tile.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\sand tile.xnb

@@ -15,7 +15,12 @@ namespace NEA
         private Texture2D playerCharacter;
         private Texture2D grassTile;
         private Texture2D stoneBrickTile;
+        private Texture2D brickWallTile;
+        private Texture2D shallowWaterTile;
+        private Texture2D sandTile;
+        private Texture2D crosshair;
         private Vector2 playerPosition;
+        private Vector2 mousePosition;
         private float playerSpeed;
         private const int mapSize = 100;
         private int[,] mapArray = new int[mapSize,mapSize];
@@ -43,10 +48,14 @@ namespace NEA
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            errorText = Content.Load<SpriteFont>("errorText");   
-            playerCharacter = Content.Load<Texture2D>("player character");
-            grassTile = Content.Load<Texture2D>("grass tile");
-            stoneBrickTile = Content.Load<Texture2D>("stone brick tile");
+            errorText = Content.Load<SpriteFont>("Fonts\\errorText");   
+            playerCharacter = Content.Load<Texture2D>("Characters\\player character");
+            grassTile = Content.Load<Texture2D>("Tiles\\grass tile");
+            stoneBrickTile = Content.Load<Texture2D>("Tiles\\stone brick tile");
+            brickWallTile = Content.Load<Texture2D>("Tiles\\brick wall tile");
+            shallowWaterTile = Content.Load<Texture2D>("Tiles\\shallow water tile");
+            sandTile = Content.Load<Texture2D>("Tiles\\sand tile");
+            crosshair = Content.Load<Texture2D>("Misc assets\\crosshair");
             // TODO: use this.Content to load your game content here
         }
 
@@ -56,25 +65,29 @@ namespace NEA
                 Exit();
             //movement controls
             var keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Up))
+            if (keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W))
             {
                 playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            if (keyState.IsKeyDown(Keys.Down))
+            if (keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S))
             {
                 playerPosition.Y += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            if (keyState.IsKeyDown(Keys.Left))
+            if (keyState.IsKeyDown(Keys.Left) || keyState.IsKeyDown(Keys.A))
             {
                 playerPosition.X -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            if (keyState.IsKeyDown(Keys.Right))
+            if (keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.D))
             {
                 playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             var mouseState = Mouse.GetState(); //gets coords and clicks
-            // TODO: Add your update logic here
+            mousePosition = new Vector2(mouseState.X, mouseState.Y);
+            Mouse.SetCursor(MouseCursor.FromTexture2D(crosshair, 0, 0));
             
+            // TODO: Add your update logic here
+
+
             base.Update(gameTime);
         }
 
@@ -83,15 +96,22 @@ namespace NEA
             // TODO: Add your drawing code here
             GenerateMap();
             _spriteBatch.Begin();
-            _spriteBatch.Draw(playerCharacter, playerPosition, null, Color.White, 0f, new Vector2(playerCharacter.Width / 2, playerCharacter.Height / 2), Vector2.One, SpriteEffects.None, 0f); 
-            _spriteBatch.End();
-            
+            _spriteBatch.Draw(
+                playerCharacter,
+                playerPosition,
+                null,
+                Color.White,
+                0f,
+                new Vector2(playerCharacter.Width / 2, playerCharacter.Height / 2),
+                Vector2.One,
+                SpriteEffects.None,
+                0f); 
+            _spriteBatch.End();    
             base.Draw(gameTime);
         }
         //unloads the map from the array and sorts through it, drawing the tiles specified. Maps should always be closed by a "1" on a new line after the final line
         public void GenerateMap()
         {
-            
             int i = 0;
             int j = 0;
             _spriteBatch.Begin();
@@ -106,6 +126,17 @@ namespace NEA
                             break;
                         case 3:
                             _spriteBatch.Draw(stoneBrickTile, new Vector2(j * 50, i * 50), Color.White);
+                            break;
+                        case 4:
+                            _spriteBatch.Draw(shallowWaterTile, new Vector2(j * 50, i * 50), Color.White);
+                            break;
+                        case 5:
+                            _spriteBatch.Draw(sandTile, new Vector2(j * 50, i * 50), Color.White);
+                            break;
+                        case 6:
+                            _spriteBatch.Draw(brickWallTile, new Vector2(j * 50, i * 50), Color.White);
+                            break;
+                        case 7:
                             break;
                         case 99:
                             break;
