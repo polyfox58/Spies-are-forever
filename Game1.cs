@@ -95,9 +95,9 @@ namespace NEA
             int i = 0;
             int j = 0;
             _spriteBatch.Begin();
-            while (this.mapArray[i,j] != 1)
+            while (this.mapArray[i,j] != 1)     //going through first array
             {
-                while (this.mapArray[i,j+1] != 0)
+                while (this.mapArray[i,j+1] != 0)   //going through second array
                 {
                     switch (this.mapArray[i, j])
                     {
@@ -105,11 +105,10 @@ namespace NEA
                             _spriteBatch.Draw(grassTile,new Vector2 (j*50, i*50), Color.Green);
                             break;
                         case 3:
-                            _spriteBatch.Draw(stoneBrickTile, new Vector2(j * 50, i * 50), Color.Gold);
+                            _spriteBatch.Draw(stoneBrickTile, new Vector2(j * 50, i * 50), Color.White);
                             break;
                         case 99:
                             break;
-                    
                     }
                     j++;
                 }
