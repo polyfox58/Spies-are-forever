@@ -18,7 +18,9 @@ namespace NEA
         private Texture2D brickWallTile;
         private Texture2D shallowWaterTile;
         private Texture2D sandTile;
+
         private Texture2D crosshair;
+        private Texture2D guidingLaser;
         private Vector2 playerPosition;
         private Vector2 mousePosition;
         private float playerSpeed;
@@ -43,6 +45,7 @@ namespace NEA
             playerSpeed = 100f;
             // ^^ placing the player in the centre of the screen and setting their speed
             GenerateMapArray("test map.txt");
+            Mouse.SetCursor(MouseCursor.FromTexture2D(crosshair, 0, 0));
         }
 
         protected override void LoadContent()
@@ -56,6 +59,7 @@ namespace NEA
             shallowWaterTile = Content.Load<Texture2D>("Tiles\\shallow water tile");
             sandTile = Content.Load<Texture2D>("Tiles\\sand tile");
             crosshair = Content.Load<Texture2D>("Misc assets\\crosshair");
+            guidingLaser = Content.Load<Texture2D>("Misc assets\\guiding laser");
             // TODO: use this.Content to load your game content here
         }
 
@@ -83,11 +87,7 @@ namespace NEA
             }
             var mouseState = Mouse.GetState(); //gets coords and clicks
             mousePosition = new Vector2(mouseState.X, mouseState.Y);
-            Mouse.SetCursor(MouseCursor.FromTexture2D(crosshair, 0, 0));
             
-            // TODO: Add your update logic here
-
-
             base.Update(gameTime);
         }
 
@@ -105,8 +105,19 @@ namespace NEA
                 new Vector2(playerCharacter.Width / 2, playerCharacter.Height / 2),
                 Vector2.One,
                 SpriteEffects.None,
-                0f); 
-            _spriteBatch.End();    
+                0f);
+            _spriteBatch.Draw(
+                guidingLaser,
+                playerPosition,
+                null,
+                Color.Blue,
+                (mousePosition.X - playerPosition.X)/360 - ((mousePosition.Y + playerPosition.Y)/360),
+                new Vector2(playerCharacter.Width / 2, playerCharacter.Height),
+                new Vector2(0.1f,2),
+                SpriteEffects.None,
+                0f);
+            _spriteBatch.End();
+            
             base.Draw(gameTime);
         }
         //unloads the map from the array and sorts through it, drawing the tiles specified. Maps should always be closed by a "1" on a new line after the final line

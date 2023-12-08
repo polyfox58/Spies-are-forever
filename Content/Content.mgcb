@@ -51,6 +51,18 @@
 /processorParam:TextureFormat=Color
 /build:Misc assets/crosshair.png
 
+#begin Misc assets/guiding laser.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Misc assets/guiding laser.png
+
 #begin Tiles/brick wall tile.png
 /importer:TextureImporter
 /processor:TextureProcessor

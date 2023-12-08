@@ -60,3 +60,4 @@ C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\gras
 C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\shallow water tile.xnb
 C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\stone brick tile.xnb
 C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Tiles\sand tile.xnb
+C:\Users\Boys\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Misc assets\guiding laser.xnb
