@@ -24,7 +24,9 @@ namespace NEA
         private Vector2 playerPosition;
         private Vector2 mousePosition;
         private float playerSpeed;
+        private Vector2 relativeMousePosition;
         private const int mapSize = 100;
+        
         private int[,] mapArray = new int[mapSize,mapSize];
         private SpriteFont errorText;
 
@@ -33,11 +35,12 @@ namespace NEA
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
+            _graphics.SynchronizeWithVerticalRetrace = false;
         }
 
         protected override void Initialize()
         {
+            
             // TODO: Add your initialization logic here
             base.Initialize();
             
@@ -45,7 +48,7 @@ namespace NEA
             playerSpeed = 100f;
             // ^^ placing the player in the centre of the screen and setting their speed
             GenerateMapArray("test map.txt");
-            Mouse.SetCursor(MouseCursor.FromTexture2D(crosshair, 0, 0));
+            Mouse.SetCursor(MouseCursor.FromTexture2D(crosshair, crosshair.Height/2,crosshair.Width/2));
         }
 
         protected override void LoadContent()
@@ -87,7 +90,7 @@ namespace NEA
             }
             var mouseState = Mouse.GetState(); //gets coords and clicks
             mousePosition = new Vector2(mouseState.X, mouseState.Y);
-            
+            relativeMousePosition = playerPosition - mousePosition;
             base.Update(gameTime);
         }
 
@@ -111,13 +114,15 @@ namespace NEA
                 playerPosition,
                 null,
                 Color.Blue,
-                (mousePosition.X - playerPosition.X)/360 - ((mousePosition.Y + playerPosition.Y)/360),
-                new Vector2(playerCharacter.Width / 2, playerCharacter.Height),
-                new Vector2(0.1f,2),
+                -(float)Math.Atan2(relativeMousePosition.X,relativeMousePosition.Y),
+                new Vector2(guidingLaser.Width / 2, guidingLaser.Height),
+                new Vector2(0.1f, 2),
                 SpriteEffects.None,
-                0f);
+                0f) ;
             _spriteBatch.End();
-            
+
+
+            DisplayMessage(errorText, playerPosition.ToString());
             base.Draw(gameTime);
         }
         //unloads the map from the array and sorts through it, drawing the tiles specified. Maps should always be closed by a "1" on a new line after the final line

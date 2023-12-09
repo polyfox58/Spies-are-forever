@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Boys\\Source\\Repos\\spies-are-forever\\NEA.csproj": {}
+    "C:\\Users\\willi\\Source\\Repos\\Spies-are-forever\\NEA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Boys\\Source\\Repos\\spies-are-forever\\NEA.csproj": {
+    "C:\\Users\\willi\\Source\\Repos\\Spies-are-forever\\NEA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Boys\\Source\\Repos\\spies-are-forever\\NEA.csproj",
+        "projectUniqueName": "C:\\Users\\willi\\Source\\Repos\\Spies-are-forever\\NEA.csproj",
         "projectName": "NEA",
-        "projectPath": "C:\\Users\\Boys\\Source\\Repos\\spies-are-forever\\NEA.csproj",
-        "packagesPath": "C:\\Users\\Boys\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Boys\\Source\\Repos\\spies-are-forever\\obj\\",
+        "projectPath": "C:\\Users\\willi\\Source\\Repos\\Spies-are-forever\\NEA.csproj",
+        "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\willi\\Source\\Repos\\Spies-are-forever\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Boys\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\willi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,7 +25,7 @@
           "net6.0"
         ],
         "sources": {
-          "C:\\Users\\Boys\\Source\\Repos\\NEA\\package": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
