@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,13 +19,12 @@ namespace NEA
         private Texture2D brickWallTile;
         private Texture2D shallowWaterTile;
         private Texture2D sandTile;
-
         private Texture2D crosshair;
         private Texture2D guidingLaser;
         private Vector2 playerPosition;
         private Vector2 mousePosition;
         private float playerSpeed;
-        private Vector2 relativeMousePosition;
+        public Vector2 relativeMousePosition;
         private const int mapSize = 100;
         
         private int[,] mapArray = new int[mapSize,mapSize];
@@ -122,7 +122,7 @@ namespace NEA
             _spriteBatch.End();
 
 
-            DisplayMessage(errorText, playerPosition.ToString());
+            //DisplayMessage(errorText, playerPosition.ToString());
             base.Draw(gameTime);
         }
         //unloads the map from the array and sorts through it, drawing the tiles specified. Maps should always be closed by a "1" on a new line after the final line
@@ -165,6 +165,11 @@ namespace NEA
             _spriteBatch.End();
         }
         //writes messages to the screen using the font "messageType"
+        public Vector2 GetRelativeMousePosition()
+        {
+            return relativeMousePosition;
+        }
+        
         public void DisplayMessage(SpriteFont messageType, string message)
         {
             _spriteBatch.Begin();
@@ -215,5 +220,26 @@ namespace NEA
             //test
         }
 
+    }
+
+    public class Projectile : Game1
+    {
+        private float speed; //speed is the distance of the hypotenuse of a right angle triange where the other 2 sides are x and y
+        private Texture2D sprite;
+        private float direction; //angle in radians
+        private Vector2 coords;
+        public Projectile()
+        {
+            speed = 10;
+            sprite = null;
+            direction = 0f;
+            coords = new Vector2(0,0);   
+        }
+        void moveProjectile()
+        {
+            Vector2 relativeMousePosition = GetRelativeMousePosition();
+            coords.Y = (float)Math.Sin(Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y));
+            coords.X = (float)Math.Sqrt((coords.Y * coords.Y) + (speed * speed));
+        }
     }
 }
