@@ -4,18 +4,20 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Characters/player character.png</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Fonts/errorText.spritefont</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Fonts/File.spritefont</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Misc assets/crosshair.png</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Misc assets/guiding laser.png</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Tiles/brick wall tile.png</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Tiles/grass tile.png</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Tiles/sand tile.png</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Tiles/shallow water tile.png</File>
-    <File>C:/Users/Boys/Source/Repos/Spies-Are-Forever/Content/Tiles/stone brick tile.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Characters/player character.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Fonts/errorText.spritefont</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Fonts/File.spritefont</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Misc assets/bullet.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Misc assets/crosshair.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Misc assets/guiding laser.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Tiles/brick wall tile.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Tiles/grass tile.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Tiles/sand tile.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Tiles/shallow water tile.png</File>
+    <File>C:/Users/willi/source/repos/Spies-are-forever/Content/Tiles/stone brick tile.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

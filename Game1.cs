@@ -88,7 +88,12 @@ namespace NEA
             {
                 playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            var mouseState = Mouse.GetState(); //gets coords and clicks
+            if (keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.Space))
+            {
+                Projectile bullet = new Projectile();
+
+            }
+                var mouseState = Mouse.GetState(); //gets coords and clicks
             mousePosition = new Vector2(mouseState.X, mouseState.Y);
             relativeMousePosition = playerPosition - mousePosition;
             base.Update(gameTime);
@@ -121,9 +126,10 @@ namespace NEA
                 0f) ;
             _spriteBatch.End();
 
-
+            Projectile.moveProjectile();
             //DisplayMessage(errorText, playerPosition.ToString());
             base.Draw(gameTime);
+       
         }
         //unloads the map from the array and sorts through it, drawing the tiles specified. Maps should always be closed by a "1" on a new line after the final line
         public void GenerateMap()

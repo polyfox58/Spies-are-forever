@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Content"
   ],
-  "SelectedNode": "\\NEA.sln",
+  "SelectedNode": "\\Game1.cs",
   "PreviewInSolutionExplorer": false
 }

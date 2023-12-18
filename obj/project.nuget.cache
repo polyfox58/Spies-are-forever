@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "GDV/OvhRKD4aIzPPesa3G7S93c0CJnrADFxEAQEFETj1PpETM4mKZm6ES4+gJkkJtGkHNQ1QJ+OZYUyC/tCh9Q==",
+  "dgSpecHash": "EsxuqmDcnQzD0yUfsXKiSv08RbtRRAvMltuoK1x/VP/KQONsHxa4OLEr8DAoSu9/uEwcE7MJdzHokIGfrDWK6A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Boys\\Source\\Repos\\spies-are-forever\\NEA.csproj",
+  "projectFilePath": "C:\\Users\\willi\\Source\\Repos\\Spies-Are-Forever\\NEA.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Boys\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\Boys\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\Boys\\.nuget\\packages\\monogame.framework.windowsdx\\3.8.1.303\\monogame.framework.windowsdx.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\willi\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\willi\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\willi\\.nuget\\packages\\monogame.framework.windowsdx\\3.8.1.303\\monogame.framework.windowsdx.3.8.1.303.nupkg.sha512"
   ],
   "logs": []
 }
