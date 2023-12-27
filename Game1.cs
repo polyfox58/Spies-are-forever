@@ -73,12 +73,16 @@ namespace NEA
 
         protected override void Update(GameTime gameTime)
         {
+            var keyState = Keyboard.GetState();
+            var mouseState = Mouse.GetState(); //gets coords and clicks
+            bool executeOnce = false;
             AngleBetweenMouseAndPlayer = -(float)Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y);
+            mousePosition = new Vector2(mouseState.X, mouseState.Y);
+            relativeMousePosition = playerPosition - mousePosition;
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             //controls
-            var keyState = Keyboard.GetState();
-            var mouseState = Mouse.GetState(); //gets coords and clicks
             if (keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W))
             {
                 playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -95,19 +99,23 @@ namespace NEA
             {
                 playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            if (keyState.IsKeyDown(Keys.Space) || mouseState.LeftButton.HasFlag(ButtonState.Pressed))
+            try
             {
-                projectiles.Append(new Projectile(10, bullet, AngleBetweenMouseAndPlayer,playerPosition));
-                DisplayMessage(errorText, "lmb pressed");
+                if (mouseState.LeftButton.HasFlag(ButtonState.Pressed) && executeOnce == false)
+                {
+                    projectiles.Append(new Projectile(10, bullet, AngleBetweenMouseAndPlayer, playerPosition));
+                    DisplayMessage(errorText, "lmb pressed");
+                    executeOnce = true;
+                }
             }
-           
-            mousePosition = new Vector2(mouseState.X, mouseState.Y);
-            relativeMousePosition = playerPosition - mousePosition;
+            catch { }
+            if (mouseState.LeftButton.HasFlag(ButtonState.Released) && executeOnce == true)
+                executeOnce = false;
             if (projectiles[0] != null)
             {
                 foreach (var projectile in projectiles)
                 {
-                    projectile.moveProjectile();
+                    projectile.moveProjectile(gameTime);
                 }
             }
             base.Update(gameTime);
@@ -184,11 +192,6 @@ namespace NEA
             _spriteBatch.End();
         }
         //writes messages to the screen using the font "messageType"
-        public Vector2 GetRelativeMousePosition()
-        {
-            return relativeMousePosition;
-        }
-        
         public void DisplayMessage(SpriteFont messageType, string message)
         {
             _spriteBatch.Begin();
@@ -261,13 +264,12 @@ namespace NEA
             _direction = direction;
             _coords = coords;
         }
-        public void moveProjectile()
+        public void moveProjectile(GameTime gameTime)
         {
-            Vector2 relativeMousePosition = GetRelativeMousePosition();
-            _coords.Y += (float)Math.Sin(Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y));
-            _coords.X += (float)Math.Sqrt((_coords.Y * _coords.Y) + (_speed * _speed));
+            _coords.Y += (float)Math.Sin(_direction) * _speed;
+            _coords.X += (float)Math.Cos(_speed) * _speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             //playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;    <- movement reference
-            
+                       
         }
     }
 }
