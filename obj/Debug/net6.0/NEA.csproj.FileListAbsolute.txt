@@ -97,3 +97,4 @@ C:\Users\willi\Source\Repos\Spies-are-forever\obj\Debug\net6.0\refint\NEA.dll
 C:\Users\willi\Source\Repos\Spies-are-forever\obj\Debug\net6.0\NEA.pdb
 C:\Users\willi\Source\Repos\Spies-are-forever\obj\Debug\net6.0\NEA.genruntimeconfig.cache
 C:\Users\willi\Source\Repos\Spies-are-forever\obj\Debug\net6.0\ref\NEA.dll
+C:\Users\willi\Source\Repos\spies-are-forever\bin\Debug\net6.0\Content\Misc assets\bullet.xnb

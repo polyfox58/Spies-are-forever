@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\willi\\Source\\Repos\\Spies-Are-Forever\\NEA.csproj": {}
+    "C:\\Users\\willi\\Source\\Repos\\spies-are-forever\\NEA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\willi\\Source\\Repos\\Spies-Are-Forever\\NEA.csproj": {
+    "C:\\Users\\willi\\Source\\Repos\\spies-are-forever\\NEA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\willi\\Source\\Repos\\Spies-Are-Forever\\NEA.csproj",
+        "projectUniqueName": "C:\\Users\\willi\\Source\\Repos\\spies-are-forever\\NEA.csproj",
         "projectName": "NEA",
-        "projectPath": "C:\\Users\\willi\\Source\\Repos\\Spies-Are-Forever\\NEA.csproj",
+        "projectPath": "C:\\Users\\willi\\Source\\Repos\\spies-are-forever\\NEA.csproj",
         "packagesPath": "C:\\Users\\willi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\willi\\Source\\Repos\\Spies-Are-Forever\\obj\\",
+        "outputPath": "C:\\Users\\willi\\Source\\Repos\\spies-are-forever\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -21,6 +21,7 @@ namespace NEA
         private Texture2D sandTile;
         private Texture2D crosshair;
         private Texture2D guidingLaser;
+        private Texture2D bullet;
         private Vector2 playerPosition;
         private Vector2 mousePosition;
         private float playerSpeed;
@@ -63,6 +64,7 @@ namespace NEA
             sandTile = Content.Load<Texture2D>("Tiles\\sand tile");
             crosshair = Content.Load<Texture2D>("Misc assets\\crosshair");
             guidingLaser = Content.Load<Texture2D>("Misc assets\\guiding laser");
+            bullet = Content.Load<Texture2D>("Misc assets\\bullet");
             // TODO: use this.Content to load your game content here
         }
 
@@ -70,8 +72,9 @@ namespace NEA
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            //movement controls
+            //controls
             var keyState = Keyboard.GetState();
+            var mouseState = Mouse.GetState(); //gets coords and clicks
             if (keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W))
             {
                 playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -88,14 +91,16 @@ namespace NEA
             {
                 playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            if (keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.Space))
+            if (keyState.IsKeyDown(Keys.Space) || mouseState.LeftButton)
             {
-                Projectile bullet = new Projectile();
-
+                Projectile shot = new Projectile(10, bullet, -(float)Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y),playerPosition);
+                DisplayMessage(errorText, "lmb pressed");
+            
             }
-                var mouseState = Mouse.GetState(); //gets coords and clicks
+           
             mousePosition = new Vector2(mouseState.X, mouseState.Y);
             relativeMousePosition = playerPosition - mousePosition;
+
             base.Update(gameTime);
         }
 
@@ -125,9 +130,8 @@ namespace NEA
                 SpriteEffects.None,
                 0f) ;
             _spriteBatch.End();
-
-            Projectile.moveProjectile();
-            //DisplayMessage(errorText, playerPosition.ToString());
+                
+                //DisplayMessage(errorText, playerPosition.ToString());
             base.Draw(gameTime);
        
         }
@@ -230,22 +234,29 @@ namespace NEA
 
     public class Projectile : Game1
     {
-        private float speed; //speed is the distance of the hypotenuse of a right angle triange where the other 2 sides are x and y
-        private Texture2D sprite;
-        private float direction; //angle in radians
-        private Vector2 coords;
+        private float _speed; //speed is the distance of the hypotenuse of a right angle triange where the other 2 sides are x and y
+        private Texture2D _sprite;
+        private float _direction; //angle in radians
+        private Vector2 _coords;
         public Projectile()
         {
-            speed = 10;
-            sprite = null;
-            direction = 0f;
-            coords = new Vector2(0,0);   
+            _speed = 10;
+            _sprite = null;
+            _direction = 0f;
+            _coords = new Vector2(0,0);   
         }
-        void moveProjectile()
+        public Projectile(float speed, Texture2D sprite, float direction,Vector2 coords)
+        {
+            _speed = speed;
+            _sprite = sprite;
+            _direction = direction;
+            _coords = coords;
+        }
+        public void moveProjectile()
         {
             Vector2 relativeMousePosition = GetRelativeMousePosition();
-            coords.Y = (float)Math.Sin(Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y));
-            coords.X = (float)Math.Sqrt((coords.Y * coords.Y) + (speed * speed));
+            _coords.Y = (float)Math.Sin(Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y));
+            _coords.X = (float)Math.Sqrt((_coords.Y * _coords.Y) + (_speed * _speed));
         }
     }
 }
