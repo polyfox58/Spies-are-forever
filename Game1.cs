@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml;
@@ -26,6 +27,8 @@ namespace NEA
         private Vector2 mousePosition;
         private float playerSpeed;
         public Vector2 relativeMousePosition;
+        public float AngleBetweenMouseAndPlayer;
+        public Projectile[] projectiles = new Projectile[256];
         private const int mapSize = 100;
         
         private int[,] mapArray = new int[mapSize,mapSize];
@@ -70,6 +73,7 @@ namespace NEA
 
         protected override void Update(GameTime gameTime)
         {
+            AngleBetweenMouseAndPlayer = -(float)Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             //controls
@@ -91,16 +95,21 @@ namespace NEA
             {
                 playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            if (keyState.IsKeyDown(Keys.Space) || mouseState.LeftButton)
+            if (keyState.IsKeyDown(Keys.Space) || mouseState.LeftButton.HasFlag(ButtonState.Pressed))
             {
-                Projectile shot = new Projectile(10, bullet, -(float)Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y),playerPosition);
+                projectiles.Append(new Projectile(10, bullet, AngleBetweenMouseAndPlayer,playerPosition));
                 DisplayMessage(errorText, "lmb pressed");
-            
             }
            
             mousePosition = new Vector2(mouseState.X, mouseState.Y);
             relativeMousePosition = playerPosition - mousePosition;
-
+            if (projectiles[0] != null)
+            {
+                foreach (var projectile in projectiles)
+                {
+                    projectile.moveProjectile();
+                }
+            }
             base.Update(gameTime);
         }
 
@@ -124,7 +133,7 @@ namespace NEA
                 playerPosition,
                 null,
                 Color.Blue,
-                -(float)Math.Atan2(relativeMousePosition.X,relativeMousePosition.Y),
+                AngleBetweenMouseAndPlayer,
                 new Vector2(guidingLaser.Width / 2, guidingLaser.Height),
                 new Vector2(0.1f, 2),
                 SpriteEffects.None,
@@ -255,8 +264,10 @@ namespace NEA
         public void moveProjectile()
         {
             Vector2 relativeMousePosition = GetRelativeMousePosition();
-            _coords.Y = (float)Math.Sin(Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y));
-            _coords.X = (float)Math.Sqrt((_coords.Y * _coords.Y) + (_speed * _speed));
+            _coords.Y += (float)Math.Sin(Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y));
+            _coords.X += (float)Math.Sqrt((_coords.Y * _coords.Y) + (_speed * _speed));
+            //playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;    <- movement reference
+            
         }
     }
 }
