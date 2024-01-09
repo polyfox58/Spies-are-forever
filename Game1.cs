@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -47,10 +48,9 @@ namespace NEA
             
             // TODO: Add your initialization logic here
             base.Initialize();
-            
-            playerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
+            playerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2); //to try and stop the game from breaking
             playerSpeed = 100f;
-            // ^^ placing the player in the centre of the screen and setting their speed
+         //   projectiles.Append(new Projectile()); //placing the player in the centre of the screen and setting their speed
             GenerateMapArray("test map.txt");
             Mouse.SetCursor(MouseCursor.FromTexture2D(crosshair, crosshair.Height/2,crosshair.Width/2));
         }
@@ -76,9 +76,9 @@ namespace NEA
             var keyState = Keyboard.GetState();
             var mouseState = Mouse.GetState(); //gets coords and clicks
             bool executeOnce = false;
-            AngleBetweenMouseAndPlayer = -(float)Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y);
             mousePosition = new Vector2(mouseState.X, mouseState.Y);
             relativeMousePosition = playerPosition - mousePosition;
+            AngleBetweenMouseAndPlayer = -(float)Math.Atan2(relativeMousePosition.X, relativeMousePosition.Y);
             
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -99,6 +99,7 @@ namespace NEA
             {
                 playerPosition.X += playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
+            //bullet firing
             try
             {
                 if (mouseState.LeftButton.HasFlag(ButtonState.Pressed) && executeOnce == false)
@@ -113,7 +114,7 @@ namespace NEA
                 executeOnce = false;
             if (projectiles[0] != null)
             {
-                foreach (var projectile in projectiles)
+                foreach (Projectile projectile in projectiles)
                 {
                     projectile.moveProjectile(gameTime);
                 }
@@ -146,6 +147,23 @@ namespace NEA
                 new Vector2(0.1f, 2),
                 SpriteEffects.None,
                 0f) ;
+            if (projectiles[0] != null)
+            {
+                foreach (Projectile projectile in projectiles)
+                {
+                    _spriteBatch.Draw(
+                        bullet,
+                        projectile.getCoords(),
+                        null,
+                        Color.White,
+                        projectile.getDirection(),
+                        new Vector2(bullet.Width / 2, bullet.Height / 2),
+                        0f,
+                        SpriteEffects.None,
+                        0f
+                        );
+                }
+            }
             _spriteBatch.End();
                 
                 //DisplayMessage(errorText, playerPosition.ToString());
@@ -242,34 +260,5 @@ namespace NEA
             //test
         }
 
-    }
-
-    public class Projectile : Game1
-    {
-        private float _speed; //speed is the distance of the hypotenuse of a right angle triange where the other 2 sides are x and y
-        private Texture2D _sprite;
-        private float _direction; //angle in radians
-        private Vector2 _coords;
-        public Projectile()
-        {
-            _speed = 10;
-            _sprite = null;
-            _direction = 0f;
-            _coords = new Vector2(0,0);   
-        }
-        public Projectile(float speed, Texture2D sprite, float direction,Vector2 coords)
-        {
-            _speed = speed;
-            _sprite = sprite;
-            _direction = direction;
-            _coords = coords;
-        }
-        public void moveProjectile(GameTime gameTime)
-        {
-            _coords.Y += (float)Math.Sin(_direction) * _speed;
-            _coords.X += (float)Math.Cos(_speed) * _speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //playerPosition.Y -= playerSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;    <- movement reference
-                       
-        }
     }
 }
